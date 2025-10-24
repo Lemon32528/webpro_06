@@ -36,7 +36,7 @@ app.get("/omikuji2", (req, res) => {
   res.render( 'omikuji2', {result:luck} );
 });
 
-app.get("/janken", (req, res) => {
+app.get("/janken2", (req, res) => {
   let hand = req.query.hand;
   let win = Number( req.query.win );
   let total = Number( req.query.total );
