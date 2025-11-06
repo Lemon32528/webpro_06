@@ -38,12 +38,20 @@ app.get("/omikuji2", (req, res) => {
 
 app.get("/janken2", (req, res) => {
   let hand = req.query.hand;
-  let win = Number( req.query.win );
-  let total = Number( req.query.total );
+  let win = Number( req.query.win ) || 0;
+  let total = Number( req.query.total ) || 0;
   console.log( {hand, win, total});
   const num = Math.floor( Math.random() * 3 + 1 );
+
+  let your = '';
   let cpu = '';
   let judgement = '';
+  total += 1;
+
+  if( hand==1 ) your = 'グー';
+  else if( hand==2 ) your = 'チョキ';
+  else your = 'パー';
+
   if( num==1 ) cpu = 'グー';
   else if( num==2 ) cpu = 'チョキ';
   else cpu = 'パー';
@@ -51,9 +59,11 @@ app.get("/janken2", (req, res) => {
   // 以下の数行は人間の勝ちの場合の処理なので，
   // 判定に沿ってあいこと負けの処理を追加する
   if( hand==num ) judgement = 'あいこ';
-  if( hand > num ) judgement = '負け';
-  else if( hand == 1 && num == 3) judgement = '負け';
-  if( hand < num ) {
+  else if( hand == 1 && num == 2) {
+    judgement = '勝ち';
+    win += 1;
+  }
+  else if( hand == 2 && num == 3) {
     judgement = '勝ち';
     win += 1;
   }
@@ -61,15 +71,18 @@ app.get("/janken2", (req, res) => {
     judgement = '勝ち';
     win += 1;
   }
-  total += 1;
+  else {
+    judgement = '負け';
+  }
+
   const display = {
-    your: hand,
+    your: your,
     cpu: cpu,
     judgement: judgement,
     win: win,
     total: total
   }
-  res.render( 'janken', display );
+  res.render( 'janken2', display );
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
