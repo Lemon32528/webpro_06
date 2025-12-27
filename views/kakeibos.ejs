@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>家計簿一覧</title>
+</head>
+
+<body>
+    <h1>シンプル家計簿</h1>
+
+    <a href="/">トップメニューに戻る</a>
+    
+    <table border="1">
+        <tr>
+            <th>日付</th>
+            <th>費目</th>
+            <th>金額</th>
+        </tr>
+        <% let number=0 %>
+            <% for( let row of data ) { %>
+                <tr>
+                    <td>
+                        <%= row.date %>
+                    </td>
+                    <td>
+                        <a href="/kakeibos/<%= number %>">
+                            <%= row.category %>
+                        </a>
+                    </td>
+                    <td>
+                        <%= row.amount %> 円
+                    </td>
+                </tr>
+                <% number +=1 %>
+                    <% } %>
+    </table>
+    <a href="/kakeibos/create">支出を追加</a>
+</body>
+
+</html>

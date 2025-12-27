@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>詳細</title>
+</head>
+
+<body>
+    <h1>支出詳細</h1>
+
+    <p>日付: <%= data.date %></p>
+    <p>費目: <%= data.category %></p>
+    <p>金額: <%= data.amount %> 円</p>
+    <p>メモ: <%= data.memo %>
+    </p>
+
+    <br>
+    <a href="/kakeibos/edit/<%= id %>">編集</a> |
+    <a href="/kakeibos/delete/<%= id %>" onclick="return confirm('本当に削除してよろしいですか？');">削除</a> |
+    <a href="/kakeibos">戻る</a>
+</body>
+
+</html>

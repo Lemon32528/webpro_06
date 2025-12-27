@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>編集</title>
+</head>
+
+<body>
+    <h1>編集</h1>
+    <form action="/reviews/update/<%= id %>" method="POST">
+        メニュー名: <input type="text" name="menu" value="<%= data.menu %>"><br>
+        価格: <input type="number" name="price" value="<%= data.price %>"> 円<br>
+
+        評価: <input type="number" name="stars" value="<%= data.stars %>" min="1" max="5"><br>
+
+        感想:<br>
+        <textarea name="comment" rows="3" cols="30"><%= data.comment %></textarea><br>
+
+        <br>
+        <input type="submit" value="更新">
+    </form>
+</body>
+
+</html>

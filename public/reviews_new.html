@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>レビュー登録</title>
+</head>
+
+<body>
+    <h1>レビュー登録</h1>
+    <form action="/reviews" method="POST">
+        メニュー名: <input type="text" name="menu" required><br>
+        価格: <input type="number" name="price"> 円<br>
+
+        評価:<br>
+        <input type="radio" name="stars" value="5" required> ★★★★★ (5)<br>
+        <input type="radio" name="stars" value="4"> ★★★★ (4)<br>
+        <input type="radio" name="stars" value="3"> ★★★ (3)<br>
+        <input type="radio" name="stars" value="2"> ★★ (2)<br>
+        <input type="radio" name="stars" value="1"> ★ (1)<br>
+        <br>
+
+        感想:<br>
+        <textarea name="comment" rows="3" cols="30"></textarea><br>
+
+        <br>
+        <input type="submit" value="投稿">
+    </form>
+</body>
+
+</html>

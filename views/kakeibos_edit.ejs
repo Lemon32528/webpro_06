@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>編集</title>
+</head>
+
+<body>
+    <h1>編集</h1>
+    <form action="/kakeibos/update/<%= id %>" method="POST">
+        日付: <input type="date" name="date" value="<%= data.date %>"><br>
+
+        費目: <input type="text" name="category" value="<%= data.category %>"><br>
+
+        金額: <input type="number" name="amount" value="<%= data.amount %>"> 円<br>
+
+        メモ:<br>
+        <textarea name="memo" rows="3" cols="30"><%= data.memo %></textarea><br>
+
+        <br>
+        <input type="submit" value="更新">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>支出登録</title>
+</head>
+
+<body>
+    <h1>支出の登録</h1>
+    <form action="/kakeibos" method="POST">
+        日付: <input type="date" name="date" required><br>
+
+        費目:
+        <select name="category" required>
+            <option value="食費">食費</option>
+            <option value="交通費">交通費</option>
+            <option value="趣味">趣味</option>
+            <option value="日用品">日用品</option>
+            <option value="その他">その他</option>
+        </select><br>
+
+        金額: <input type="number" name="amount" required> 円<br>
+
+        メモ:<br>
+        <textarea name="memo" rows="3" cols="30"></textarea><br>
+
+        <br>
+        <input type="submit" value="登録">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>新規登録</title>
+</head>
+
+<body>
+    <h1>新規構築登録</h1>
+    <form action="/teams" method="POST">
+        構築名: <input type="text" name="name" required><br>
+
+        <h3>1匹目</h3>
+        ポケモン名: <input type="text" name="p1_name"><br>
+        詳細: <textarea name="p1_info" rows="3" cols="50"></textarea><br>
+
+        <h3>2匹目</h3>
+        ポケモン名: <input type="text" name="p2_name"><br>
+        詳細: <textarea name="p2_info" rows="3" cols="50"></textarea><br>
+
+        <h3>3匹目</h3>
+        ポケモン名: <input type="text" name="p3_name"><br>
+        詳細: <textarea name="p3_info" rows="3" cols="50"></textarea><br>
+
+        <br>
+        <input type="submit" value="登録">
+    </form>
+</body>
+
+</html>

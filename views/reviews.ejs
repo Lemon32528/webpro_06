@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学食レビュー</title>
+</head>
+
+<body>
+    <h1>学食レビュー一覧</h1>
+    <a href="/">トップメニューに戻る</a>
+    <hr>
+
+    <table border="1">
+        <tr>
+            <th>メニュー</th>
+            <th>評価</th>
+            <th>価格</th>
+        </tr>
+        <% let number=0 %>
+            <% for( let row of data ) { %>
+                <tr>
+                    <td>
+                        <a href="/reviews/<%= number %>">
+                            <%= row.menu %>
+                        </a>
+                    </td>
+                    <td>★ <%= row.stars %>
+                    </td>
+                    <td>
+                        <%= row.price %> 円
+                    </td>
+                </tr>
+                <% number +=1 %>
+                    <% } %>
+    </table>
+    <br>
+    <a href="/reviews/create">新規レビューを書く</a>
+</body>
+
+</html>

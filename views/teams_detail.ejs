@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>詳細</title>
+</head>
+
+<body>
+    <h1>
+        <%= data.name %> の詳細
+    </h1>
+
+    <table border="1">
+        <tr>
+            <th>1匹目</th>
+            <td>
+                <%= data.p1_name %>
+            </td>
+            <td>
+                <%= data.p1_info %>
+            </td>
+        </tr>
+        <tr>
+            <th>2匹目</th>
+            <td>
+                <%= data.p2_name %>
+            </td>
+            <td>
+                <%= data.p2_info %>
+            </td>
+        </tr>
+        <tr>
+            <th>3匹目</th>
+            <td>
+                <%= data.p3_name %>
+            </td>
+            <td>
+                <%= data.p3_info %>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <a href="/teams/edit/<%= id %>">編集</a> |
+    <a href="/teams/delete/<%= id %>" onclick="return confirm('本当に削除してよろしいですか？');">削除</a> |
+    <a href="/teams">戻る</a>
+</body>
+
+</html>

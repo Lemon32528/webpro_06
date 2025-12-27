@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>構築一覧</title>
+</head>
+
+<body>
+    <h1>ポケモン構築管理</h1>
+    
+    <a href="/">トップメニューに戻る</a>
+
+    
+    <ul>
+        <% let number=0 %>
+            <% for( let row of data ) { %>
+                <li>
+                    <a href="/teams/<%= number %>">
+                        <%= row.name %>
+                    </a>
+                    (軸: <%= row.p1_name %>)
+                </li>
+                <% number +=1 %>
+                    <% } %>
+    </ul>
+    <a href="/teams/create">追加</a>
+</body>
+
+</html>
