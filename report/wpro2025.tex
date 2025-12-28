@@ -5,45 +5,317 @@
 \usepackage{stix2} %欧文＆数式フォント
 \usepackage[fleqn,tbtags]{mathtools} % 数式関連 (w/ amsmath)
 \usepackage{hira-stix} % ヒラギノフォント＆STIX2 フォント代替定義（Warning回避）
+\usepackage{url}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{float}
 \ModifyHeading{chapter}{
     label_format={\thechapter.}
 }
 \begin{document}
 
 \title{WEBプログラミングレポート}
-\author{学生番号 氏名}
+\author{25G1053 齋藤翔太}
 %\date{2024年XX月XX日}
 \maketitle
 \chapter{開発者向け仕様書}
 \section{開発環境とソースコード}
+本システムの開発環境とソースコードの構成について説明する．
+また，GitHubリポジトリのURLも記載する．
+\begin{itemize}
+    \item \textbf{リポジトリURL：}\url{https://github.com/Lemon32528/webpro_06}
+    \item \textbf{開発環境：}Node.js
+    \item \textbf{フレームワーク：}Express
+    \item \textbf{テンプレートエンジン：}EJS
+    \item \textbf{データ管理方式：}データベースは使用せず，サーバプログラム内の配列変数としてメモリ上に保持する仕様とした．
+\end{itemize}
 
 
-\section{システム概要}
 
+\section{各システムの概要}
+\subsection{ポケモン対戦構築管理}
+\subsubsection{データ構造}
+\begin{table}[H]
+    \centering
+    \caption{システム1：データ構造（変数名：teamList）}
+    \begin{tabular}{|l|l|l|} \hline
+        変数名 & 型 & 説明 \\ \hline \hline
+        id & 数値 & 一意のID（連番） \\ \hline
+        name & 文字列 & チーム名（または構築名） \\ \hline
+        memo & 文字列 & 補足・メモ \\ \hline
+    \end{tabular}
+\end{table}
 
-
-\subsection{データ構造}
-
-\subsection{ページ遷移・機能詳細}
-
-\sebsection{ポケモン対戦構築管理}
-
+\subsubsection{ページ遷移・機能詳細}
+\begin{table}[H]
+    \centering
+    \caption{システム1：ページ遷移と機能詳細}
+    \begin{tabular}{|l|l|p{9cm}|} \hline
+        メソッド & リソース名 & 機能・遷移内容  \\ \hline \hline
+        GET & /teams & 一覧表示．全データをテーブル形式で表示する．\\ \hline
+        GET & /teams/create & 新規登録フォーム表示．public/teams\_new.html へリダイレクト． \\ \hline
+        POST & /teams & 新規登録処理．IDを付与して配列に追加し，一覧へ戻る． \\ \hline
+        GET & /teams/:id & 詳細表示．指定IDのデータの詳細を表示する． \\ \hline
+        GET & /teams/edit/:id & 編集フォーム表示．指定IDのデータを初期値として表示． \\ \hline
+        POST & /teams/update/:id & 更新処理．フォームの内容でデータを上書きし，一覧へ戻る． \\ \hline
+        GET & /teams/delete/:id & 削除処理．指定データを削除し，一覧へ戻る（確認ダイアログあり）． \\ \hline
+    \end{tabular}
+\end{table}
 
 \subsection{家計簿}
-
-
+\subsubsection{データ構造}
+\begin{table}[H]
+    \centering
+    \caption{システム2：データ構造（変数名：kakeiboList）}
+    \begin{tabular}{|l|l|l|} \hline
+        変数名 & 型 & 説明 \\ \hline \hline
+        id & 数値 & 一意のID（連番） \\ \hline
+        date & 文字列 & 日付（YYYY-MM-DD形式） \\ \hline
+        category & 文字列 & 費目（食費，交通費など） \\ \hline
+        amount & 数値 & 金額（円） \\ \hline
+    \end{tabular}
+\end{table}
+\subsubsection{ページ遷移・機能詳細}
+\begin{table}[H]
+    \centering
+    \caption{システム2：ページ遷移と機能詳細}
+    \begin{tabular}{|l|l|p{9cm}|} \hline
+        メソッド & リソース名 & 機能・遷移内容 \\ \hline \hline
+        GET & /kakeibos & 一覧表示．家計簿データを一覧表示する． \\ \hline
+        GET & /kakeibos/create & 新規登録フォーム表示．public/kakeibos\_new.html へリダイレクト． \\ \hline
+        POST & /kakeibos & 新規登録処理．データを追加し，一覧へ戻る． \\ \hline
+        GET & /kakeibos/:id & 詳細表示．指定IDの詳細データを表示する． \\ \hline
+        GET & /kakeibos/edit/:id & 編集フォーム表示． \\ \hline
+        POST & /kakeibos/update/:id & 更新処理．データを更新し，一覧へ戻る． \\ \hline
+        GET & /kakeibos/delete/:id & 削除処理．データを削除し，一覧へ戻る（確認ダイアログあり）． \\ \hline
+    \end{tabular}
+\end{table}
 
 \subsection{学食レビュー}
+\subsubsection{データ構造}
+\begin{table}[H]
+    \centering
+    \caption{システム3：データ構造（変数名：reviewList）}
+    \begin{tabular}{|l|l|l|} \hline
+        変数名 & 型 & 説明 \\ \hline \hline
+        id & 数値 & 一意のID（連番） \\ \hline
+        menu & 文字列 & メニュー名 \\ \hline
+        price & 数値 & 価格（円） \\ \hline
+        stars & 数値 & 評価（1〜5の整数） \\ \hline
+        comment & 文字列 & 感想（長文テキスト） \\ \hline
+    \end{tabular}
+\end{table}
+\subsubsection{ページ遷移・機能詳細}
+\begin{table}[H]
+    \centering
+    \caption{システム3：ページ遷移と機能詳細}
+    \begin{tabular}{|l|l|p{9cm}|} \hline
+        メソッド & リソース名 & 機能・遷移内容 \\ \hline \hline
+        GET & /reviews & 一覧表示．レビュー一覧を表示（★マークで視覚化）． \\ \hline
+        GET & /reviews/create & 新規登録フォーム表示．public/reviews\_new.html へリダイレクト． \\ \hline
+        POST & /reviews & 新規登録処理．必須入力チェックを行い，データを追加． \\ \hline
+        GET & /reviews/:number & 詳細表示．指定IDの詳細データを表示する． \\ \hline
+        GET & /reviews/edit/:number & 編集フォーム表示． \\ \hline
+        POST & /reviews/update/:number & 更新処理．データを更新し，一覧へ戻る． \\ \hline
+        GET & /reviews/delete/:number & 削除処理．データを削除し，一覧へ戻る（確認ダイアログあり）． \\ \hline
+    \end{tabular}
+\end{table}
 
+\section{採用した技術とその選定理由}
+本開発では，ユーザビリティの向上とデータの整合性を保つため，授業で扱った範囲に加え，以下の技術・仕様を採用した．
 
+\begin{itemize}
+    \item \textbf{required属性 (HTML5)}
+    \begin{itemize}
+        \item \textbf{概要:} フォームの入力項目に付与することで，未入力のまま送信されることをブラウザ側で防ぐ属性である．
+        \item \textbf{採用理由:} 家計簿の金額やレビューの評価など，システムにとって必須のデータが欠損したまま登録されるのを防ぐため．サーバ側の処理だけでなく，クライアント側でも入力を強制することで，誤操作による空データの登録を未然に防止した．
+    \end{itemize}
 
-\section{管理者向け仕様書}
+    \item \textbf{confirmメソッド (JavaScript)}
+    \begin{itemize}
+        \item \textbf{概要:} リンククリック時に「本当に削除してよろしいですか？」といった確認ダイアログを表示する機能である．\texttt{onclick}イベント内で使用し，キャンセルが選択された場合は遷移を中断する．
+        \item \textbf{採用理由:} データの削除処理において，誤ってボタンを押してしまった場合に即座にデータが消失する事故を防ぐため．ユーザに再確認を促すステップを設けることで，安全性・操作性を向上させた．
+    \end{itemize}
 
+    \item \textbf{textareaタグ (HTML)}
+    \begin{itemize}
+        \item \textbf{概要:} 複数行のテキスト入力が可能になるフォーム要素である．
+        \item \textbf{採用理由:} 「学食レビューの感想」や「ポケモン構築のコンセプト」など，1行のテキストボックス(\texttt{input type="text"})では視認性が悪く入力しづらい長文データを取り扱うため採用した．これにより，ユーザは改行を含む文章を容易に入力・確認できる．
+    \end{itemize}
+    \item \textbf{Flexboxレイアウト (CSS)}
+    \begin{itemize}
+        \item \textbf{概要:} 要素の配置や順序，間隔などを柔軟に設定できるレイアウトモジュールである．
+        \item \textbf{採用理由:} 授業で扱ったtableタグによる画一的な配置だけでなく，トップメニューや一覧画面において，画面幅に応じて要素が自動的に折り返されるカード型のレイアウトを実現するために採用した．
+    \end{itemize}
+    \item \textbf{擬似クラス :hover (CSS)}
+    \begin{itemize}
+        \item \textbf{概要:} 要素が特定の状態（マウスカーソルが乗っている等）にある場合にスタイルを適用する技術である．
+        \item \textbf{採用理由:} ボタンやリンクにカーソルを合わせた際に色を変化させることで，クリック可能な要素であることを利用者に直感的に伝えるため（インタラクションの向上）に採用した．
+    \end{itemize}
+    \item \textbf{white-spaceプロパティ (CSS)}
+    \begin{itemize}
+        \item \textbf{概要:} 要素内の空白や改行の扱いを指定するスタイル設定である．
+        \item \textbf{採用理由:} 標準のHTMLでは無視されてしまう「入力フォーム内の改行」をそのまま画面に反映させ，長文のデータ（詳細情報やレビューの感想など）を読みやすく表示するために採用した．
+    \end{itemize}
+    \item \textbf{セマンティックタグ header，main (HTML)}
+    \begin{itemize}
+        \item \textbf{概要:} divタグのような意味を持たないタグではなく，ページの構造（ヘッダー，メインコンテンツ）を明確にするタグである．
+        \item \textbf{採用理由:} Webページの文書構造を明確にし，検索エンジンやブラウザがコンテンツの役割を正しく理解できるようにするため（アクセシビリティと保守性の向上）に採用した．
+    \end{itemize}
+\end{itemize}
 
+\chapter{管理者向け仕様書}
+本章では，本システムの管理者（運用担当者）に向け，システムの導入から運用，トラブルシューティングについて記述する．
 
-\section{利用者向け仕様書}
+\section{インストールから起動までの手順確認}
+本システムを利用可能にするまでの大まかな手順は以下の通りである．各手順の詳細は後述する．
 
+\begin{enumerate}
+    \item \textbf{環境確認:} Node.jsがインストールされているか確認する．
+    \item \textbf{資材配置:} ソースコード一式をサーバ上の任意のディレクトリに配置する．
+    \item \textbf{依存ライブラリの導入:} \texttt{npm install} コマンドを実行する．
+    \item \textbf{起動:} \texttt{node app\_repo.js} コマンドを実行し，ブラウザからアクセスする．
+\end{enumerate}
 
+\section{インストール方法}
+本システムは Node.js 環境上で動作する．以下の手順に従いインストールを行う．
+
+\subsection{事前準備}
+Node.js がインストールされていない場合は，公式サイトよりインストーラをダウンロードし，インストールを行うこと．
+
+\subsection{ライブラリのインストール}
+ターミナル（コマンドプロンプト）を開き，ソースコード（\texttt{app\_repo.js} があるディレクトリ）へ移動した後，
+以下のコマンドを実行し，依存ライブラリをインストールする．
+
+\begin{verbatim}
+$ npm install
+\end{verbatim}
+
+\section{起動方法}
+インストールの完了後，以下のコマンドを実行してシステムを起動する．
+
+\begin{verbatim}
+$ node app_repo.js
+\end{verbatim}
+
+コンソールに \texttt{Server listening...} と表示されれば起動成功である．
+Webブラウザを立ち上げ，以下のURLへアクセスすることでシステムの利用を開始できる．
+
+\begin{itemize}
+    \item \textbf{アクセスURL:} \url{http://localhost:8080}
+\end{itemize}
+
+\section{起動できない場合の対処}
+コマンドを実行しても正常に起動しない場合，以下の原因と対処法を確認すること．
+
+\subsection{ポート番号が既に使用されている場合}
+\textbf{エラー内容:}
+\begin{verbatim}
+Error: listen EADDRINUSE: address already in use :::8080
+\end{verbatim}
+
+\textbf{対処法:}
+ポート8080番が他のプロセス（以前起動したままのサーバ等）によって使用されている．
+\begin{itemize}
+    \item 既に起動している \texttt{node} プロセスを終了させる．
+    \item または，\texttt{app.js} 内のポート番号設定（8080）を別の番号に変更する．
+\end{itemize}
+
+\subsection{モジュールが見つからない場合}
+\textbf{エラー内容:}
+\begin{verbatim}
+Error: Cannot find module 'express'
+\end{verbatim}
+
+\textbf{対処法:}
+\texttt{npm install} が実行されていない，または失敗している可能性がある．
+再度 \texttt{npm install} を実行し，\texttt{node\_modules} フォルダが生成されているか確認する．
+
+\section{終了方法}
+サーバを停止させる場合は，起動しているターミナル上でキーボードの\texttt{Ctrl + C}のキーを同時に入力する．
+
+\section{不具合（既知の制限事項）}
+本システムにおける現状の不具合，および仕様上の制限事項として\textbf{サーバ再起動によるデータ消失}が挙げられる．
+データベースを使用せず，プログラム内のメモリ（変数）上でデータを管理している仕様のため，
+サーバを停止・再起動すると，登録したデータはすべて初期状態にリセットされる．
+永続的なデータ保存が必要な場合は，データベースとの連携機能の実装が必要である．
+
+\chapter{利用者向け仕様書}
+本章では，本システムに含まれる「ポケモン対戦パーティ管理システム」の利用手順について解説する．
+
+\section{システム概要}
+本アプリケーションは，ポケモン対戦で使用するパーティ（チーム）の構成を記録・管理するためのシステムである．
+パーティ名および構成する3匹のポケモンの詳細情報（努力値，技構成など）を一括して登録・保存し，ブラウザ上で閲覧することができる．
+
+\section{利用手順}
+
+\subsection{システムの開始}
+Webブラウザを起動し，以下のURLへアクセスする．
+\begin{center}
+    \url{http://localhost:8080}
+\end{center}
+
+アクセスするとトップページが表示される（図\ref{fig:top}）．
+メニューから「ポケモンパーティ管理」のリンクをクリックすることで，パーティ一覧画面へ遷移する．
+なお，各システムの画面上部に表示されているヘッダーのタイトル（Webプログラミング課題）をクリックすると，
+いつでもこのトップメニュー画面に戻ることができる．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm]{Figs/topmenu.png}
+    \caption{システムトップページ}
+    \label{fig:top}
+\end{figure}
+
+\subsection{パーティの確認と新規登録}
+一覧画面（図\ref{fig:list}）では，登録済みのパーティ名称が一覧で表示される．
+新しいパーティを登録する場合は，画面内の「新規登録」リンクをクリックする．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm]{Figs/pokemon_menu.png}
+    \caption{パーティ一覧画面}
+    \label{fig:list}
+\end{figure}
+
+「新規登録」をクリックすると，登録フォーム（図\ref{fig:new}）が表示される．
+以下の項目を入力し，「登録」ボタンを押すことでデータが保存される．
+
+\begin{itemize}
+    \item \textbf{パーティ名:} 構築の名称（例：S1 砂パ展開）
+    \item \textbf{1匹目〜3匹目:} 各ポケモンの名前と，詳細情報（性格・努力値・技構成など）
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm]{Figs/pokemon_new.png}
+    \caption{パーティ新規登録画面}
+    \label{fig:new}
+\end{figure}
+
+\subsection{詳細の確認・編集・削除}
+一覧画面にて，確認したいパーティのリンクをクリックすると，詳細画面（図\ref{fig:detail}）が表示され，登録されている3匹のすべての情報を閲覧できる．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm]{Figs/pokemon_detail.png}
+    \caption{パーティ詳細画面}
+    \label{fig:detail}
+\end{figure}
+
+詳細画面には以下の操作リンクが用意されている．
+\begin{itemize}
+    \item \textbf{編集:} 登録内容を修正するためのフォームが開く．
+    \item \textbf{削除:} このパーティ情報を削除し，一覧画面に戻る．
+\end{itemize}
+
+\chapter{おわりに}
+
+本制作を通じて，Webアプリケーション開発におけるサーバサイドの挙動や，
+HTTPメソッド（GET/POST）によるデータの受け渡しについて深く理解することができた．
+特に，共通のテンプレート（ヘッダーやCSS）を利用して複数のシステム間でデザインを統一する作業は，
+保守性の高いコードを書くための良い実践となった．
+今回習得したExpressやEJSの知識を基盤とし，
+今後はより複雑で規模の大きなWebシステム開発にも挑戦していきたい．
 
 
 \end{document} 

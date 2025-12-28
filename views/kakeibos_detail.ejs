@@ -3,10 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/public/style.css">
     <title>詳細</title>
 </head>
 
 <body>
+    <header>
+        <a href="/" style="text-decoration:none;">
+            <span style="color:white; font-weight:bold; font-size:1.1rem; margin-left:20px;">
+                Webプログラミング課題
+            </span>
+        </a>
+    </header>
     <h1>支出詳細</h1>
 
     <p>日付: <%= data.date %></p>
@@ -16,9 +24,9 @@
     </p>
 
     <br>
-    <a href="/kakeibos/edit/<%= id %>">編集</a> |
-    <a href="/kakeibos/delete/<%= id %>" onclick="return confirm('本当に削除してよろしいですか？');">削除</a> |
-    <a href="/kakeibos">戻る</a>
+    <a href="/kakeibos/edit/<%= id %>" class="btn btn-success">編集</a>
+    <a href="/kakeibos/delete/<%= id %>" class="btn btn-danger" onclick="return confirm('本当に削除してよろしいですか？');">削除</a>
+    <a href="/kakeibos" class="btn btn-secondary">戻る</a>
 </body>
 
 </html>

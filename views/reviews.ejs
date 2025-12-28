@@ -3,13 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/public/style.css">
     <title>学食レビュー</title>
 </head>
 
 <body>
+    <header>
+        <a href="/" style="text-decoration:none;">
+            <span style="color:white; font-weight:bold; font-size:1.1rem; margin-left:20px;">
+                Webプログラミング課題
+            </span>
+        </a>
+    </header>
     <h1>学食レビュー一覧</h1>
-    <a href="/">トップメニューに戻る</a>
-    <hr>
+    <a href="/" class="btn btn-secondary">トップメニューに戻る</a>
+    
 
     <table border="1">
         <tr>
@@ -25,7 +33,7 @@
                             <%= row.menu %>
                         </a>
                     </td>
-                    <td>★ <%= row.stars %>
+                    <td><span class="star">★</span> <%= row.stars %>
                     </td>
                     <td>
                         <%= row.price %> 円
@@ -35,7 +43,7 @@
                     <% } %>
     </table>
     <br>
-    <a href="/reviews/create">新規レビューを書く</a>
+    <a href="/reviews/create" class="btn btn-primary">新規レビューを書く</a>
 </body>
 
 </html>

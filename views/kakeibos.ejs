@@ -3,13 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/public/style.css">
     <title>家計簿一覧</title>
 </head>
 
 <body>
+    <header>
+        <a href="/" style="text-decoration:none;">
+            <span style="color:white; font-weight:bold; font-size:1.1rem; margin-left:20px;">
+                Webプログラミング課題
+            </span>
+        </a>
+    </header>
     <h1>シンプル家計簿</h1>
 
-    <a href="/">トップメニューに戻る</a>
+    <a href="/" class="btn btn-secondary">トップメニューに戻る</a>
     
     <table border="1">
         <tr>
@@ -35,7 +43,7 @@
                 <% number +=1 %>
                     <% } %>
     </table>
-    <a href="/kakeibos/create">支出を追加</a>
+    <a href="/kakeibos/create" class="btn btn-primary">支出を追加</a>
 </body>
 
 </html>

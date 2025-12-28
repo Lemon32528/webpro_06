@@ -3,24 +3,32 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/public/style.css">
     <title>詳細</title>
 </head>
 
 <body>
+    <header>
+        <a href="/" style="text-decoration:none;">
+            <span style="color:white; font-weight:bold; font-size:1.1rem; margin-left:20px;">
+                Webプログラミング課題
+            </span>
+        </a>
+    </header>
     <h1>レビュー詳細</h1>
 
     <h2>
         <%= data.menu %>
     </h2>
     <p>価格: <%= data.price %> 円</p>
-    <p>評価: ★ <%= data.stars %></span></p>
+    <p>評価: <span class="star">★</span> <%= data.stars %></p>
     <p>感想: <%= data.comment %>
     </p>
 
     <br>
-    <a href="/reviews/edit/<%= id %>">編集</a> |
-    <a href="/reviews/delete/<%= id %>" onclick="return confirm('本当に削除してよろしいですか？');">削除</a> |
-    <a href="/reviews">一覧に戻る</a>
+    <a href="/reviews/edit/<%= id %>" class="btn btn-success">編集</a>
+    <a href="/reviews/delete/<%= id %>" class="btn btn-danger" onclick="return confirm('本当に削除してよろしいですか？');">削除</a>
+    <a href="/reviews" class="btn btn-secondary">戻る</a>
 </body>
 
 </html>

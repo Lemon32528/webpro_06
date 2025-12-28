@@ -3,48 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/public/style.css">
     <title>詳細</title>
 </head>
 
 <body>
+    <header>
+        <a href="/" style="text-decoration:none;">
+            <span style="color:white; font-weight:bold; font-size:1.1rem; margin-left:20px;">
+                Webプログラミング課題
+            </span>
+        </a>
+    </header>
     <h1>
         <%= data.name %> の詳細
     </h1>
 
-    <table border="1">
-        <tr>
-            <th>1匹目</th>
-            <td>
-                <%= data.p1_name %>
-            </td>
-            <td>
-                <%= data.p1_info %>
-            </td>
-        </tr>
-        <tr>
-            <th>2匹目</th>
-            <td>
-                <%= data.p2_name %>
-            </td>
-            <td>
-                <%= data.p2_info %>
-            </td>
-        </tr>
-        <tr>
-            <th>3匹目</th>
-            <td>
-                <%= data.p3_name %>
-            </td>
-            <td>
-                <%= data.p3_info %>
-            </td>
-        </tr>
-    </table>
+    <div class="pokemon-grid">
+        <div class="pokemon-card">
+            <div class="pokemon-name">1. <%= data.p1_name %>
+            </div>
+            <div class="pokemon-info"> <%= data.p1_info %> </div>
+        </div>
+        <div class="pokemon-card">
+            <div class="pokemon-name">2. <%= data.p2_name %>
+            </div>
+            <div class="pokemon-info"> <%= data.p2_info %> </div>
+        </div>
+        <div class="pokemon-card">
+            <div class="pokemon-name">3. <%= data.p3_name %>
+            </div>
+            <div class="pokemon-info"> <%= data.p3_info %> </div>
+        </div>
+    </div>
 
-    <br>
-    <a href="/teams/edit/<%= id %>">編集</a> |
-    <a href="/teams/delete/<%= id %>" onclick="return confirm('本当に削除してよろしいですか？');">削除</a> |
-    <a href="/teams">戻る</a>
+    <div class="btn-group">
+        <a href="/teams/edit/<%= id %>" class="btn btn-success">編集</a>
+        <a href="/teams/delete/<%= id %>" class="btn btn-danger" onclick="return confirm('本当に削除してよろしいですか？');">削除</a>
+        <a href="/teams" class="btn btn-secondary">戻る</a>
+    </div>
 </body>
 
 </html>

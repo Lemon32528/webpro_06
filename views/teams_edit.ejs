@@ -3,10 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/public/style.css">
     <title>編集</title>
 </head>
 
 <body>
+    <header>
+        <a href="/" style="text-decoration:none;">
+            <span style="color:white; font-weight:bold; font-size:1.1rem; margin-left:20px;">
+                Webプログラミング課題
+            </span>
+        </a>
+    </header>
     <h1>編集</h1>
     <form action="/teams/update/<%= id %>" method="POST">
         構築名: <input type="text" name="name" value="<%= data.name %>"><br>
@@ -24,7 +32,7 @@
         詳細: <textarea name="p3_info" rows="3" cols="50"><%= data.p3_info %></textarea><br>
 
         <br>
-        <input type="submit" value="更新">
+        <input type="submit" value="更新" class="btn btn-primary">
     </form>
 </body>
 

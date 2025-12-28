@@ -3,10 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/public/style.css">
     <title>編集</title>
 </head>
 
 <body>
+    <header>
+        <a href="/" style="text-decoration:none;">
+            <span style="color:white; font-weight:bold; font-size:1.1rem; margin-left:20px;">
+                Webプログラミング課題
+            </span>
+        </a>
+    </header>
     <h1>編集</h1>
     <form action="/reviews/update/<%= id %>" method="POST">
         メニュー名: <input type="text" name="menu" value="<%= data.menu %>"><br>
@@ -18,7 +26,7 @@
         <textarea name="comment" rows="3" cols="30"><%= data.comment %></textarea><br>
 
         <br>
-        <input type="submit" value="更新">
+        <input type="submit" value="更新" class="btn btn-primary">
     </form>
 </body>
 

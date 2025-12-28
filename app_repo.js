@@ -1,3 +1,4 @@
+"use strict";
 const express = require("express");
 const app = express();
 
@@ -13,10 +14,17 @@ app.use(express.urlencoded({ extended: true }));
 let partyList = [
   { 
     id: 1, 
-    name: "S1 砂パ展開", 
+    name: "SV 砂パ", 
     p1_name: "バンギラス", p1_info: "慎重 HD252 A4 / すなおこし / ステロ, 岩封, 叩き, 吠える", 
     p2_name: "ドリュウズ", p2_info: "陽気 AS252 B4 / すなかき / 地震, アイヘ, 岩雪崩, 剣舞", 
     p3_name: "ボーマンダ", p3_info: "臆病 CS252 H4 / 威嚇 / 流星群, 大文字, ドロポン, 暴風"
+  },
+  {
+    id: 2,
+    name: "ZA ガブリアス+狙撃パ",
+    p1_name: "ガブリアス", p1_info: "意地っ張り HA252 B4 / 襷 / 地震, ダイブ, ドラゴンクロー, 剣舞",
+    p2_name: "デンリュウ", p2_info: "控えめ HC252 D4 / シュカのみ / メテオ, 10万, 龍の波動, 充電",
+    p3_name: "ポリゴンZ", p3_info: "控えめ H228 C252 B28 / 命の玉 /破壊光線, 冷ビ, 10万, 悪巧み",
   }
 ];
 
@@ -183,4 +191,4 @@ app.post("/reviews/update/:number", (req, res) => {
 });
 
 //  サーバー起動
-app.listen(8080, () => console.log("Example app listening on port 8080!"));
+app.listen(8090, () => console.log("Example app listening on port 8090!"));
