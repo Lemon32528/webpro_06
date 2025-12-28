@@ -191,4 +191,4 @@ app.post("/reviews/update/:number", (req, res) => {
 });
 
 //  サーバー起動
-app.listen(8090, () => console.log("Example app listening on port 8090!"));
+app.listen(8080, () => console.log("Example app listening on port 8080!"));
